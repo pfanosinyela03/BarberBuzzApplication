@@ -77,10 +77,10 @@ class BookAppointmentActivity : AppCompatActivity() {
         hairstyleNameTextView.text = hairstyleName ?: "Unknown"
         priceTextView.text = hairstylePrice ?: "Unknown"
 
-        // Populate the barber spinner with barber names from Firebase
+
         populateBarberSpinner()
 
-        // Retrieve username from SharedPreferences
+
         val sharedPreferences = getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("username", null)
 

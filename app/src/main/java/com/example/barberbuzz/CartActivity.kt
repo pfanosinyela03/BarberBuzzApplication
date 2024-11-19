@@ -135,12 +135,8 @@ class CartActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     removeCartFromDatabase()
                     showOrderNotification(orderId)
-                } else {
-                    // Handle the error
                 }
             }
-        } else {
-            // Handle the case where the cart is empty
         }
     }
 
@@ -194,7 +190,7 @@ class CartActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     clearCart()
                 } else {
-                    // Handle the error
+
                 }
             }
         }
