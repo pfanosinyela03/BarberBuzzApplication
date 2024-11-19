@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        //Button for Barbers
         val BarbersButton = findViewById<CardView>(R.id.BarbersHome)
         BarbersButton.setOnClickListener {
             val intent = Intent(this, BarbersDisplayActivity::class.java)
