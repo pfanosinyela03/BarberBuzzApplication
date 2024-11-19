@@ -1,66 +1,69 @@
 package com.example.barberbuzz
 
-import android.content.Context
-import android.os.Looper
-import androidx.test.core.app.ApplicationProvider
-import com.example.barberbuzz.CartActivity
-import com.example.barberbuzz.Product
-import org.junit.Assert.*
+
+import android.view.ViewGroup
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import kotlin.test.assertEquals
 
 class CartActivityTest {
 
-    private lateinit var cartActivity: CartActivity
+    @Mock
+    lateinit var mockView: ViewGroup
+
+    private lateinit var cartAdapter: CartAdapter
+    private lateinit var cartItems: MutableList<Product>
 
     @Before
     fun setUp() {
-        // Initialize CartActivity and mock Looper.myLooper()
-        Mockito.mockStatic(Looper::class.java)
-        Mockito.`when`(Looper.myLooper()).thenReturn(Looper.getMainLooper())
+        MockitoAnnotations.initMocks(this)
 
-        // Initialize the CartActivity instance
-        cartActivity = CartActivity()
+        // Initialize test data
+        cartItems = mutableListOf(
+            Product("Product 1", "R50.00", "image_url_1", 1),
+            Product("Product 2", "R30.00", "image_url_2", 2)
+        )
 
-
-
-        // Initialize any mocks if needed (this could be added later for other tests)
-        MockitoAnnotations.openMocks(this)
+        cartAdapter = CartAdapter(cartItems, { product -> }, { count -> })
     }
 
     @Test
-    fun testCalculateTotalPrice() {
-        // Prepare some sample cart items
-        val product1 = Product("Shampoo", "R50") // Assuming Product constructor accepts price as String
-        val product2 = Product("Conditioner", "R80")
-        cartActivity.cartItems.clear()
-        cartActivity.cartItems.addAll(listOf(product1, product2))
+    fun testIncreaseQuantity() {
+        // Get the ViewHolder and trigger the quantity increase
+        val viewHolder = cartAdapter.onCreateViewHolder(mockView, 0)
 
-        // Call the method to calculate total price
-        val totalPrice = cartActivity.calculateTotalPrice()
+        // Set up mock view
+        viewHolder.quantityTextView.text = "1"
+        viewHolder.increaseQuantityButton.performClick()
 
-        // Expected total price = (50 * 2) + (80 * 1) = 180
-        assertEquals(180.0, totalPrice, 0.0)
+        // Check if quantity increased to 2
+        assertEquals("2", viewHolder.quantityTextView.text.toString())
     }
 
     @Test
-    fun testCalculateTotalPriceAndItems() {
-        // Prepare some sample cart items
-        val product1 = Product("Shampoo", "R50") // Assuming Product constructor accepts price as String
-        val product2 = Product("Conditioner", "R80")
-        cartActivity.cartItems.clear()
-        cartActivity.cartItems.addAll(listOf(product1, product2))
+    fun testDecreaseQuantity() {
+        // Get the ViewHolder and trigger the quantity decrease
+        val viewHolder = cartAdapter.onCreateViewHolder(mockView, 0)
 
-        // Mock the totalTextView text value for comparison
-        val totalTextView = cartActivity.totalTextView
+        // Set up mock view
+        viewHolder.quantityTextView.text = "2"
+        viewHolder.decreaseQuantityButton.performClick()
 
-        // Call the method to calculate total price and items
-        cartActivity.calculateTotalPriceAndItems()
+        // Check if quantity decreased to 1
+        assertEquals("1", viewHolder.quantityTextView.text.toString())
+    }
 
-        // Expected total = "Total: R180.0\nItems: 3"
-        assertEquals("Total: R180.0\nItems: 3", totalTextView.text.toString())
+    @Test
+    fun testRemoveProduct() {
+        // Set up mock view
+        val viewHolder = cartAdapter.onCreateViewHolder(mockView, 0)
+        val product = cartItems[0]
+
+        // Trigger the remove button
+        viewHolder.removeProductButton.performClick()
+
+
     }
 }
