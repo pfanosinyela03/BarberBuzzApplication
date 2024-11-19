@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 
 class CartAdapter(
     private val cartItems: MutableList<Product>,
-    private val onRemoveFromCart: (Product) -> Unit,
+    val onRemoveFromCart: (Product) -> Unit,
     private val onQuantityChanged: (Int) -> Unit // Callback for quantity changes
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 

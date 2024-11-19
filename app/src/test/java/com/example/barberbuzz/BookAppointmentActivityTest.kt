@@ -11,7 +11,7 @@ class BookAppointmentActivityTest {
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.DAY_OF_YEAR, 1) // Set to tomorrow
         val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH) + 1 // Month is 0-based
+        val month = calendar.get(Calendar.MONTH) + 1
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val hour = 10
         val minute = 30
@@ -23,9 +23,9 @@ class BookAppointmentActivityTest {
     @Test
     fun `validate appointment date and time - past input`() {
         val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_YEAR, -1) // Set to yesterday
+        calendar.add(Calendar.DAY_OF_YEAR, -1)
         val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH) + 1 // Month is 0-based
+        val month = calendar.get(Calendar.MONTH) + 1
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val hour = 10
         val minute = 30

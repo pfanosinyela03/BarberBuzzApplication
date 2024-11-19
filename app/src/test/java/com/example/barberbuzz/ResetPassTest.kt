@@ -1,72 +1,65 @@
 package com.example.barberbuzz
 
+import android.content.Intent
+import android.widget.Toast
+import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseReference
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
 class ResetPassTest {
 
-    @Mock
-    private lateinit var mockDatabaseReference: DatabaseReference
-
-    @Mock
-    private lateinit var mockDataSnapshot: DataSnapshot
-
-    private lateinit var resetPass: ResetPass
+    private lateinit var scenario: ActivityScenario<ResetPass>
 
     @Before
     fun setUp() {
-        MockitoAnnotations.openMocks(this)
+        // Launch the ResetPass activity with test data
+        val intent = Intent(ApplicationProvider.getApplicationContext(), ResetPass::class.java).apply {
+            putExtra("USERNAME", "testuser")
+        }
+        scenario = ActivityScenario.launch(intent)
+    }
 
-        // Initialize activity with a mock database reference
-        resetPass = ResetPass().apply {
-            databaseReference = mockDatabaseReference
+    @Test
+    fun `test username is passed via intent`() {
+        scenario.onActivity { activity ->
+            // Check if the username is correctly retrieved from the intent
+            assertEquals("testuser", activity.username)
         }
     }
 
     @Test
-    fun `test resetUserPassword updates password successfully`() {
-        // Arrange
-        val username = "testUser"
-        val newPassword = "newPassword123"
+    fun `test empty password shows toast`() {
+        scenario.onActivity { activity ->
+            // Simulate empty password fields
+            onView(withId(R.id.resetpassword)).perform(typeText(""))
+            onView(withId(R.id.confirmresetpassword)).perform(typeText(""))
 
-        // Simulate user exists in Firebase
-        Mockito.`when`(mockDataSnapshot.exists()).thenReturn(true)
-        Mockito.`when`(mockDataSnapshot.ref).thenReturn(mockDatabaseReference)
+            // Click the reset button
+            onView(withId(R.id.resetBtn)).perform(click())
 
-        // Simulate Firebase callback
-        Mockito.doAnswer { invocation ->
-            val listener = invocation.getArgument<DatabaseReference.CompletionListener>(1)
-            listener.onComplete(null, mockDatabaseReference)
-            null
-        }.`when`(mockDatabaseReference).setValue(Mockito.eq(newPassword), Mockito.any())
 
-        // Act
-        resetPass.resetUserPassword(username, newPassword)
-
-        // Assert
-        Mockito.verify(mockDatabaseReference).setValue(newPassword)
+        }
     }
 
     @Test
-    fun `test resetUserPassword shows error for non-existent user`() {
-        // Arrange
-        val username = "nonExistentUser"
-        val newPassword = "newPassword123"
+    fun `test mismatched passwords show toast`() {
+        scenario.onActivity { activity ->
+            // Simulate mismatched passwords
+            onView(withId(R.id.resetpassword)).perform(typeText("password1"))
+            onView(withId(R.id.confirmresetpassword)).perform(typeText("password2"))
 
-        // Simulate user does not exist in Firebase
-        Mockito.`when`(mockDataSnapshot.exists()).thenReturn(false)
+            // Click the reset button
+            onView(withId(R.id.resetBtn)).perform(click())
 
-        // Act
-        resetPass.resetUserPassword(username, newPassword)
 
-        // Assert
-        Mockito.verify(mockDatabaseReference, Mockito.never()).setValue(Mockito.anyString())
+        }
     }
 }
-

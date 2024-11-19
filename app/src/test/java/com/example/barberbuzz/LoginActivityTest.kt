@@ -22,7 +22,7 @@ class LoginActivityTest {
 
     @Test
     fun testLoginSuccessful() {
-        // Mock Firebase database and SharedPreferences
+        // Mock Firebase database
         val mockDatabaseReference = mock<DatabaseReference>()
         val mockDataSnapshot = mock<DataSnapshot>()
         val mockContext = mock<Context>()

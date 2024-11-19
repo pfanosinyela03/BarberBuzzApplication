@@ -16,7 +16,7 @@ class ResetPass : AppCompatActivity() {
     lateinit var binding: ActivityResetPassBinding
     lateinit var firebaseDatabase: FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
-    private lateinit var username: String
+    lateinit var username: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

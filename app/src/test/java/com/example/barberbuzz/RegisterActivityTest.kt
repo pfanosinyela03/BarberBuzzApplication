@@ -18,7 +18,7 @@ import kotlin.test.assertTrue
 class RegisterActivityTest {
 
     init {
-        // Ensure Mockito annotations are initialized properly
+
         MockitoAnnotations.openMocks(this)
     }
 

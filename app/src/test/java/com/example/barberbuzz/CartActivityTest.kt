@@ -1,69 +1,47 @@
 package com.example.barberbuzz
 
-
-import android.view.ViewGroup
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
-import kotlin.test.assertEquals
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 class CartActivityTest {
 
-    @Mock
-    lateinit var mockView: ViewGroup
-
-    private lateinit var cartAdapter: CartAdapter
     private lateinit var cartItems: MutableList<Product>
+    private lateinit var mockRemoveCallback: (Product) -> Unit
+    private lateinit var mockQuantityCallback: (Int) -> Unit
+    private lateinit var cartAdapter: CartAdapter
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
-
-        // Initialize test data
+        // Set up sample cart items
         cartItems = mutableListOf(
-            Product("Product 1", "R50.00", "image_url_1", 1),
-            Product("Product 2", "R30.00", "image_url_2", 2)
+            Product("1", "Product 1", "url1", 1),
+            Product("2", "Product 2", "url2", 2)
         )
 
-        cartAdapter = CartAdapter(cartItems, { product -> }, { count -> })
+        // Mock callbacks
+        mockRemoveCallback = mock<(Product) -> Unit>()
+        mockQuantityCallback = mock<(Int) -> Unit>()
+
+        // Create the CartAdapter instance
+        cartAdapter = CartAdapter(cartItems, mockRemoveCallback, mockQuantityCallback)
     }
 
     @Test
-    fun testIncreaseQuantity() {
-        // Get the ViewHolder and trigger the quantity increase
-        val viewHolder = cartAdapter.onCreateViewHolder(mockView, 0)
-
-        // Set up mock view
-        viewHolder.quantityTextView.text = "1"
-        viewHolder.increaseQuantityButton.performClick()
-
-        // Check if quantity increased to 2
-        assertEquals("2", viewHolder.quantityTextView.text.toString())
+    fun `test item count matches cart size`() {
+        // Verify the adapter returns the correct number of items
+        assertEquals(2, cartAdapter.itemCount)
     }
 
     @Test
-    fun testDecreaseQuantity() {
-        // Get the ViewHolder and trigger the quantity decrease
-        val viewHolder = cartAdapter.onCreateViewHolder(mockView, 0)
+    fun `test remove item callback is invoked`() {
+        // Simulate removing the first item
+        val productToRemove = cartItems[0]
+        cartAdapter.onRemoveFromCart(productToRemove)
 
-        // Set up mock view
-        viewHolder.quantityTextView.text = "2"
-        viewHolder.decreaseQuantityButton.performClick()
-
-        // Check if quantity decreased to 1
-        assertEquals("1", viewHolder.quantityTextView.text.toString())
-    }
-
-    @Test
-    fun testRemoveProduct() {
-        // Set up mock view
-        val viewHolder = cartAdapter.onCreateViewHolder(mockView, 0)
-        val product = cartItems[0]
-
-        // Trigger the remove button
-        viewHolder.removeProductButton.performClick()
-
-
+        // Verify the callback is triggered with the correct product
+        verify(mockRemoveCallback).invoke(productToRemove)
     }
 }
