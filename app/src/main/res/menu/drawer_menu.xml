@@ -1,0 +1,37 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_appointments"
+        android:title="@string/appointments"
+        android:icon="@drawable/ic_appointments"/>
+
+    <item
+        android:id="@+id/nav_orders"
+        android:title="Orders"
+        android:icon="@drawable/ic_orders"/>
+
+    <item
+        android:id="@+id/nav_book_appointment"
+        android:title="@string/book_appointment"
+        android:icon="@drawable/ic_book"/>
+
+
+    <item
+        android:id="@+id/nav_location"
+        android:title="@string/location"
+        android:icon="@drawable/ic_location"/>
+
+    <item
+        android:id="@+id/nav_feedback"
+        android:title="Feedback"
+        android:icon="@drawable/feedback_24"/>
+
+    <item
+        android:id="@+id/nav_Settings"
+        android:title="Settings"
+        android:icon="@drawable/baseline_settings_24"/>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="@string/logout"
+        android:icon="@drawable/ic_logout"/>
+</menu>

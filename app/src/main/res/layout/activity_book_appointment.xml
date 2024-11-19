@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/df"
+    tools:context=".BookAppointmentActivity">
+
+    <!-- Toolbar with custom title taking full width at the top -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#597cff"
+        android:elevation="4dp">
+
+        <!-- Centered, bold title for the toolbar -->
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Book Appointment"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/white" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Main Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+
+        <!-- Hairstyle Name Label -->
+        <TextView
+            android:id="@+id/hairstyleNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Hairstyle Name:"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <!-- Hairstyle Name TextView (from intent) -->
+        <TextView
+            android:id="@+id/hairstyleNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Sample Hairstyle"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <!-- Price Label -->
+        <TextView
+            android:id="@+id/priceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Price:"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <!-- Price TextView (from intent) -->
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="R300"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <!-- Barber Selection Label -->
+        <TextView
+            android:id="@+id/selectBarberLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Select Barber"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <!-- Barber Spinner -->
+        <Spinner
+            android:id="@+id/barberSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/Lavender"
+            android:padding="12dp" />
+
+        <!-- Date Selection Label -->
+        <TextView
+            android:id="@+id/selectDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Select Date:"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <!-- Date Selection EditText -->
+        <EditText
+            android:id="@+id/dateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Select Date"
+            android:padding="12dp" />
+
+        <!-- Time Selection Label -->
+        <TextView
+            android:id="@+id/selectTimeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Select Time:"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <!-- Time Selection EditText -->
+        <EditText
+            android:id="@+id/timeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Select Time"
+            android:padding="12dp" />
+
+        <!-- Book Appointment Button -->
+        <Button
+            android:id="@+id/bookAppointmentButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="#7ed957"
+            android:padding="12dp"
+            android:text="Book Appointment"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+</LinearLayout>

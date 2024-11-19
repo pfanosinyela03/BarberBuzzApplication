@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BarberBuzz</string>
+    <string name="services">Services</string>
+    <string name="welcome">Welcome</string>
+    <string name="appointments">Appointments</string>
+    <string name="barbers">Barbers</string>
+    <string name="book_appointment">Book Appointment</string>
+    <string name="notification">Notification</string>
+    <string name="location">Location</string>
+    <string name="logout">Logout</string>
+    <string name="nav_admin_settings">Settings</string>
+    <string name="notifications">Notificatiuons</string>
+    <string name="nav_admin_orders">Orders</string>
+    <string name="Orders" />
+    <string name="nav_admin_appointments">Appointments</string>
+    <string name="users">Users</string>
+    <string name="appointmentstoolbar">Appointments</string>
+</resources>

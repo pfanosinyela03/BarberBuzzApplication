@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/forgotpass"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ForgotPass1">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_edittext"
+            android:orientation="vertical"
+            android:padding="25dp">
+
+            <TextView
+                android:id="@+id/ForgotpassText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password"
+                android:textAlignment="center"
+                android:textColor="@color/Lavender"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/forgotpassemail"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_account_box_24"
+                android:drawablePadding="8dp"
+                android:hint="Username"
+                android:inputType="textEmailAddress"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/subBtn"
+                android:layout_width="322dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/Lavender"
+                android:text="Submit"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</LinearLayout>

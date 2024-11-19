@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp">
+
+    <!-- Toolbar with custom title taking full width at the top -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#597cff"
+        android:elevation="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <!-- Centered, bold title for the toolbar -->
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Hairstyles"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/white" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- RecyclerView for displaying hairstyles -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hairstylesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:paddingTop="8dp" />
+</RelativeLayout>

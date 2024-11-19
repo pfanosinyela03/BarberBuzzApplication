@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/drawerLayout"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/menubg"
+        android:padding="16dp"
+        tools:context=".MainActivity">
+
+        <!-- First Row -->
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="210dp"
+            android:layout_height="80dp"
+            android:text="TextView"
+            android:textColor="#597cff"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.119" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="210dp"
+            android:layout_height="52dp"
+            android:text="@string/welcome"
+            android:textColor="#597cff"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.034" />
+
+        <ImageView
+            android:id="@+id/navtabView"
+            android:layout_width="73dp"
+            android:layout_height="63dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.045"
+            app:srcCompat="@drawable/img_1" />
+
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@id/row2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/BookAppointmentHome"
+                app:cardElevation="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="11dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/clothingImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/home_appointment" />
+
+                    <TextView
+                        android:id="@+id/clothingName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/clothingImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1dp"
+                        android:text="Book"
+                        android:textColor="#5ce1e6"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/AppointmentName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/clothingName"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1dp"
+                        android:text="Appointment"
+                        android:textColor="#5ce1e6"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/BarbersHome"
+                app:cardElevation="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="11dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/elecImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/barber_home" />
+
+                    <TextView
+                        android:id="@+id/elecName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/elecImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1dp"
+                        android:text="Barbers"
+                        android:textColor="#5ce1e6"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Second Row -->
+        <LinearLayout
+            android:id="@+id/row2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ShopHome"
+                app:cardElevation="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="11dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/homeImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/online_cart" />
+
+                    <TextView
+                        android:id="@+id/homeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/homeImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1dp"
+                        android:text="Shop Online"
+                        android:textColor="#5ce1e6"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ScheduleHome"
+                app:cardElevation="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="11dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/beautyImage"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/schedule" />
+
+                    <TextView
+                        android:id="@+id/beautyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/beautyImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1dp"
+                        android:text="Appointments"
+                        android:textColor="#5ce1e6"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="hairstyleImageView" type="id"></item>
+    <item name="hairstyleNameTextView" type="id"></item>
+    <item name="hairstyleDurationTextView" type="id"></item>
+    <item name="hairstylePriceTextView" type="id"></item>
+    <item name="titleTextView" type="id" />
+    <item name="priceTextView" type="id" />
+    <item name="selectBarberLabel" type="id" />
+    <item name="barberSpinner" type="id" />
+    <item name="selectDateLabel" type="id" />
+    <item name="dateEditText" type="id" />
+    <item name="appointmentsbar" type="id" />
+
+
+
+</resources>
