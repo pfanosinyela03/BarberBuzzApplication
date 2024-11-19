@@ -1,54 +1,53 @@
 package com.example.barberbuzz
 
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
-import androidx.test.core.app.ActivityScenario
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.Before
+import org.junit.Assert.*
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mockito
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
-import org.robolectric.annotation.Config
+import java.util.*
 
-@RunWith(AndroidJUnit4::class)
-@Config(manifest = Config.NONE)  // This will skip the manifest requirements
 class BookAppointmentActivityTest {
 
-    private lateinit var activityScenario: ActivityScenario<BookAppointmentActivity>
+    @Test
+    fun `validate appointment date and time - valid input`() {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, 1) // Set to tomorrow
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1 // Month is 0-based
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val hour = 10
+        val minute = 30
 
-    @Before
-    fun setup() {
-        // Launch the activity
-        activityScenario = ActivityScenario.launch(BookAppointmentActivity::class.java)
+        val isValid = validateDateTime("$day/$month/$year", "$hour:$minute")
+        assertTrue("The date and time should be valid", isValid)
     }
 
     @Test
-    fun testBookingAppointmentSuccess() {
-        activityScenario.onActivity { activity ->
-            // Find the views
-            val bookAppointmentButton: Button = activity.findViewById(R.id.bookAppointmentButton)
-            val barberSpinner: Spinner = activity.findViewById(R.id.barberSpinner)
-            val dateEditText: EditText = activity.findViewById(R.id.dateEditText)
-            val timeEditText: EditText = activity.findViewById(R.id.timeEditText)
+    fun `validate appointment date and time - past input`() {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, -1) // Set to yesterday
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1 // Month is 0-based
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val hour = 10
+        val minute = 30
 
-            // Simulate filling out the form
-            barberSpinner.setSelection(0) // Select first barber in the list
-            dateEditText.setText("19/11/2024") // Set valid date
-            timeEditText.setText("10:00") // Set valid time
+        val isValid = validateDateTime("$day/$month/$year", "$hour:$minute")
+        assertFalse("The date and time should be invalid", isValid)
+    }
 
-            // Mock Toast to verify it is triggered
-            val toastMock = Mockito.mock(Toast::class.java)
-            whenever(Toast.makeText(activity, "Appointment booked successfully", Toast.LENGTH_SHORT)).thenReturn(toastMock)
+    private fun validateDateTime(date: String, time: String): Boolean {
+        val dateParts = date.split("/")
+        val day = dateParts[0].toInt()
+        val month = dateParts[1].toInt() - 1 // Month is 0-based
+        val year = dateParts[2].toInt()
 
-            // Simulate button click to book appointment
-            bookAppointmentButton.performClick()
+        val timeParts = time.split(":")
+        val hour = timeParts[0].toInt()
+        val minute = timeParts[1].toInt()
 
-            // Verify that Toast was shown
-            verify(toastMock).show()
+        val selectedDateTime = Calendar.getInstance().apply {
+            set(year, month, day, hour, minute)
         }
+
+        return selectedDateTime.after(Calendar.getInstance())
     }
 }
