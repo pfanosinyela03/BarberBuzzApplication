@@ -27,7 +27,7 @@ class UpdateEmailActivity : AppCompatActivity() {
         // Initialize Firebase Database reference
         database = FirebaseDatabase.getInstance().reference
 
-        // Find EditTexts and Button
+
         currentEmailInput = findViewById(R.id.currentEmailInput)
         newEmailInput = findViewById(R.id.newEmailInput)
         updateButton = findViewById(R.id.updateButton)

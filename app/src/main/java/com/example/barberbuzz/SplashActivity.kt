@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
             // User is already logged in, redirect to MainActivity
             startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
-            return // Exit the onCreate method
+            return
         }
 
         val regButton = findViewById<Button>(R.id.button2)
@@ -27,13 +27,13 @@ class SplashActivity : AppCompatActivity() {
         regButton.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
-            finish() // Optional: close SplashActivity after starting the next activity
+            finish()
         }
 
         logButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish() // Optional: close SplashActivity after starting the next activity
+            finish()
         }
     }
 }

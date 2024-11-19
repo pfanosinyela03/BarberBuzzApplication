@@ -37,7 +37,7 @@ class BookAppointmentActivity : AppCompatActivity() {
     lateinit var barberReference: DatabaseReference
 
     private val CHANNEL_ID = "appointment_notifications"
-    private val REQUEST_CODE = 1001 // Unique request code for notification permission
+    private val REQUEST_CODE = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -383,7 +383,7 @@ class BookAppointmentActivity : AppCompatActivity() {
             .setAutoCancel(true) // Dismiss notification when tapped
             .build()
 
-        // Send the notification
+        // Send the notification to user
         notificationManager.notify(0, notification)
     }
 

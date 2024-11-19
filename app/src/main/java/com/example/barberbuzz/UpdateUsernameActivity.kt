@@ -27,7 +27,7 @@ class UpdateUsernameActivity : AppCompatActivity() {
         // Initialize Firebase Database reference
         database = FirebaseDatabase.getInstance().reference
 
-        // Find EditTexts and Button
+
         currentUsernameInput = findViewById(R.id.currentUsernameInput)
         newUsernameInput = findViewById(R.id.newUsernameInput)
         updateButton = findViewById(R.id.updateButton)
@@ -38,10 +38,10 @@ class UpdateUsernameActivity : AppCompatActivity() {
 
         // Set current username to the EditText and disable editing
         currentUsernameInput.setText(currentUsername)
-        currentUsernameInput.isEnabled = false // Disable editing
+        currentUsernameInput.isEnabled = false
 
         updateButton.setOnClickListener {
-            val newUsername = newUsernameInput.text.toString().trim() // Trim whitespace
+            val newUsername = newUsernameInput.text.toString().trim()
 
             // Check if new username is not empty
             if (newUsername.isNotEmpty()) {
@@ -58,7 +58,7 @@ class UpdateUsernameActivity : AppCompatActivity() {
 
         usernameRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // If the dataSnapshot exists, the username already exists
+
                 if (dataSnapshot.exists()) {
                     Toast.makeText(this@UpdateUsernameActivity, "Username already exists", Toast.LENGTH_SHORT).show()
                 } else {
@@ -102,7 +102,7 @@ class UpdateUsernameActivity : AppCompatActivity() {
                                         editor.apply()
 
                                         Toast.makeText(this@UpdateUsernameActivity, "Username updated successfully", Toast.LENGTH_SHORT).show()
-                                        finish() // Close the activity
+                                        finish()
                                     } else {
                                         Toast.makeText(this@UpdateUsernameActivity, "Failed to delete old username", Toast.LENGTH_SHORT).show()
                                     }

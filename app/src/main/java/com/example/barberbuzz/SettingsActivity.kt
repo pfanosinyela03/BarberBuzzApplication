@@ -11,7 +11,7 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        // Find each CardView by its ID
+
         val cardUpdateUsername = findViewById<CardView>(R.id.cardUpdateUsername)
         val cardUpdateEmail = findViewById<CardView>(R.id.cardUpdateEmail)
         val cardChangePassword = findViewById<CardView>(R.id.cardChangePassword)

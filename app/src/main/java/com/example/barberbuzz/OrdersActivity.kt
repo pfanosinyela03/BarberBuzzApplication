@@ -98,7 +98,7 @@ class OrdersActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Handle possible errors (e.g., show a Toast message)
+
                 }
             })
         }
