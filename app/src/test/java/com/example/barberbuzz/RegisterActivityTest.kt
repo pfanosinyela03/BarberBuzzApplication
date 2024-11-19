@@ -1,6 +1,5 @@
 package com.example.barberbuzz
 
-
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -19,67 +18,71 @@ import kotlin.test.assertTrue
 class RegisterActivityTest {
 
     init {
-        // Initialize Mockito
+        // Ensure Mockito annotations are initialized properly
         MockitoAnnotations.openMocks(this)
     }
 
     @Test
-    fun testUsernameAlreadyExists() {
-        // Mock Firebase database and reference
+    fun `verify username already exists in database`() {
+        // Mock Firebase database structure and snapshot
         val mockDatabaseReference = mock(DatabaseReference::class.java)
         val mockDataSnapshot = mock(DataSnapshot::class.java)
         val mockValueEventListener = argumentCaptor<ValueEventListener>()
 
-        // Stub methods for database reference
+        // Simulate database child reference and response
         `when`(mockDatabaseReference.child("testUsername")).thenReturn(mockDatabaseReference)
-
-        // Simulate a case where the username already exists
         `when`(mockDataSnapshot.exists()).thenReturn(true)
 
-
-        doAnswer {
-            val listener = it.arguments[0] as ValueEventListener
+        // Handle listener callback for database query
+        doAnswer { invocation ->
+            val listener = invocation.arguments[0] as ValueEventListener
             listener.onDataChange(mockDataSnapshot)
             null
         }.`when`(mockDatabaseReference).addListenerForSingleValueEvent(mockValueEventListener.capture())
 
-        // Perform the test
-        var usernameExists = false
+        // Test logic for username existence
+        var isUsernameTaken = false
         mockDatabaseReference.child("testUsername").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                usernameExists = snapshot.exists()
+                isUsernameTaken = snapshot.exists()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // No-op for this test
+                // Handle cancellation case if necessary
             }
         })
 
-        // Verify
-        assertTrue(usernameExists, "Username should already exist in the database")
+        // Assert that username is already taken
+        assertTrue(isUsernameTaken, "Expected username to already exist in the database")
     }
 
     @Test
-    fun testPasswordsMatch() {
+    fun `validate matching passwords`() {
         val password = "password123"
         val confirmPassword = "password123"
-        assertEquals(password, confirmPassword)
+
+        // Assert passwords are identical
+        assertEquals(password, confirmPassword, "Passwords should match")
     }
 
     @Test
-    fun testPasswordsDoNotMatch() {
+    fun `validate non-matching passwords`() {
         val password = "password123"
         val confirmPassword = "differentPassword"
-        assertNotEquals(password, confirmPassword)
+
+        // Assert passwords are not identical
+        assertNotEquals(password, confirmPassword, "Passwords should not match")
     }
 
     @Test
-    fun testPasswordLength() {
+    fun `validate password length requirements`() {
         val shortPassword = "short"
-        val validPassword = "validPassword123"
-        assertFalse(shortPassword.length >= 8)
-        assertTrue(validPassword.length >= 8)
+        val strongPassword = "strongPassword123"
+
+        // Assert short password does not meet the requirement
+        assertFalse(shortPassword.length >= 8, "Password should be at least 8 characters long")
+
+        // Assert valid password meets the requirement
+        assertTrue(strongPassword.length >= 8, "Password should meet minimum length requirement")
     }
-
-
 }
