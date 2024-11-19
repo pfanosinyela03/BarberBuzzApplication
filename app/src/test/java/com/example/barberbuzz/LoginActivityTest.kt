@@ -29,12 +29,12 @@ class LoginActivityTest {
         val mockSharedPreferences = mock<SharedPreferences>()
         val mockEditor = mock<SharedPreferences.Editor>()
 
-        // Stub SharedPreferences methods
+
         whenever(mockContext.getSharedPreferences("userPrefs", Context.MODE_PRIVATE)).thenReturn(mockSharedPreferences)
         whenever(mockSharedPreferences.edit()).thenReturn(mockEditor)
         whenever(mockEditor.putString(any(), any())).thenReturn(mockEditor)
 
-        // Stub Firebase database reference methods
+
         val userData = UserData("testUsername", "testPassword", "Test User", "test@example.com")
         whenever(mockDataSnapshot.getValue(UserData::class.java)).thenReturn(userData)
         whenever(mockDataSnapshot.exists()).thenReturn(true)
@@ -64,7 +64,7 @@ class LoginActivityTest {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // No-op
+
             }
         })
 
@@ -100,7 +100,7 @@ class LoginActivityTest {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // No-op
+
             }
         })
 
@@ -129,7 +129,6 @@ class LoginActivityTest {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // No-op
             }
         })
 
