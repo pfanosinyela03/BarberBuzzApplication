@@ -88,6 +88,10 @@ dependencies {
     testImplementation("androidx.test:core:1.5.0")
     testImplementation("androidx.test.espresso:espresso-core:3.6.1")
     // Mockito for mocking Toast
+    testImplementation ("org.robolectric:robolectric:4.10.3")
+    testImplementation ("androidx.test:core:1.6.1")
+    testImplementation ("org.mockito:mockito-core:5.4.0")
+
 
 
 

@@ -14,8 +14,8 @@ import com.google.firebase.database.ValueEventListener
 class ResetPass : AppCompatActivity() {
 
     lateinit var binding: ActivityResetPassBinding
-    private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var databaseReference: DatabaseReference
+    lateinit var firebaseDatabase: FirebaseDatabase
+    lateinit var databaseReference: DatabaseReference
     private lateinit var username: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
